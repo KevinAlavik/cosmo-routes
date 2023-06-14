@@ -1,0 +1,14 @@
+use Server from "http"
+
+class Route {
+    public void fn construct(port) {
+        Server.listen(port, &void (string->any res, string->any req): {
+            $.req = req
+        })
+    }
+    public void fn register(route, content) {
+        if this.req::path == route {
+            this.res->send(content)
+        }
+  }
+}
