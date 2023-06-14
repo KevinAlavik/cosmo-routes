@@ -1,5 +1,4 @@
 use Route from "./routes"
 
-Route route = new Route(8080)
-route.register("/", "Hello, World")
-route.register("/home", "Home")
+Route route = new Route(8080, "/", "Testing")
+Route route = new Route(8080, "/s", "as")

@@ -1,14 +1,16 @@
 use Server from "http"
+use * from "assert"
 
-class Route {
-    public void fn construct(port) {
+public class Route {
+    mut string[] routes = []
+    public Route fn construct(int port, string path, string content) {
+        puts("Registered server on: %{port}")
+        $.routes.push(path)
         Server.listen(port, &void (string->any res, string->any req): {
-            $.req = req
+            every int i in routes
+                if req::path == $.routes[i] {
+                    res->send(content)
+                }
         })
     }
-    public void fn register(route, content) {
-        if this.req::path == route {
-            this.res->send(content)
-        }
-  }
 }
